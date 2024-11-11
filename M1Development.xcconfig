@@ -1,0 +1,6 @@
+// M1Development.xcconfig
+HEADER_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/dependencies_m1/include
+LIBRARY_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/dependencies_m1/lib
+OTHER_LDFLAGS = $(inherited) -lopus
+VALID_ARCHS = arm64
+ONLY_ACTIVE_ARCH = YES

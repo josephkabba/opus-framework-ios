@@ -1,60 +1,49 @@
 # Opus-iOS
 
+> **IMPORTANT NOTE:**
+> 
+> This repository contains modified build scripts from the original [Opus-iOS Framework](https://github.com/chrisballinger/Opus-iOS) by Chris Ballinger. The modifications were made to specifically support iOS builds. For the main implementation and original work, please refer to the [original repository](https://github.com/chrisballinger/Opus-iOS).
+
+## About Opus
+
 > Opus is a totally open, royalty-free, highly versatile audio codec. Opus is unmatched for interactive speech and music transmission over the Internet, but is also intended for storage and streaming applications. It is standardized by the Internet Engineering Task Force (IETF) as RFC 6716 which incorporated technology from Skype's SILK codec and Xiph.Org's CELT codec.
 
-iOS build scripts for the [Opus Codec](http://www.opus-codec.org).
+## Build Scripts
 
-## Usage
+This repository contains three modified build scripts:
 
-1. (Objective-C) [Build the static library](#building-the-static-library)
-2. (Optionally for Swift) [Build the framework](#building-the-framework)
-3. (Optionally) Use the [CocoaPod spec](/opus-ios.podspec)
+1. `build-libopus-arm.sh` - Builds for both simulator and device architectures
+2. `build-libopus-real.sh` - Builds for iOS devices only
+3. `build-libopus-sim.sh` - Builds for iOS simulator only
 
-## Building the Static Library
+### Usage
 
-#### Step 1
-
-Download the [latest stable tar file](http://opus-codec.org/downloads/) and place it into the `build/src` directory
-
-Note: If it's a new version of opus or if the iOS SDKs changed since the last time you built it, update that version at the top of the `build-libopus.sh` file.
-
-#### Step 2
-
-From the command line, run:
+From the command line:
 
 ```bash
-$ ./build-libopus.sh
+# Build all variants
+./build-all-opus.sh
+
+# Copy libraries to your project
+./copy-opus-libs.sh [--arm|--real|--sim]
 ```
 
-That will take the tar file and build the static library in a directory called `dependencies`
+## Original Work & License
 
-#### Step 3
+- Original Repository: [Opus-iOS Framework](https://github.com/chrisballinger/Opus-iOS)
+- Author: Chris Ballinger
+- Original License: MIT
 
-Follow the steps above for building the framework from the static library
+## Modifications
 
+The build scripts in this repository have been modified to:
+- Support selective building for different iOS architectures
+- Provide separate builds for simulator and device
+- Add verification and build status reporting
+- Add copy functionality with validation
 
-## Building the Framework
-
-#### Step 1
-
-Open the `opus/opus.xcodeproj` file, select `UniversalTarget` with a `Generic iOS Device`
-
-#### Step 2
-
-Build the framework by pressing Run; this will overwrite the framework in the repo root.
-
-Note: this runs a custom build script within Build Phases that will build a universal framework with both simulator and device slices
-
-If we have issues with submitting to the app store w/ the extra simulator slices, view this: http://arsenkin.com/ios-universal-framework.html / http://stackoverflow.com/a/30866648/308315
-
-#### Step 3
-
-Ensure the framework includes slices for both simulator and device architectures (x86_64 i386 armv7 armv7s arm64)
-
-```bash
-$ lipo -info opus.framework/opus
-```
+For the complete framework implementation and documentation, please refer to the original repository.
 
 ## License
 
-MIT
+This modified version maintains the MIT license from the original work.
