@@ -20,5 +20,9 @@ DerivedData
 #CocoaPods
 Pods
 
+# Ignore all dependencies folders
+dependencies-*/
+dependencies_*/
 dependencies/
 build/
+
